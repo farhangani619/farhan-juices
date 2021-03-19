@@ -1,17 +1,17 @@
-const form = document.querySelector('form');
-  const emailError = document.querySelector('.email.error');
-  const passwordError = document.querySelector('.password.error');
+const form = document.querySelector('form')
+  const emailError = document.querySelector('.email.error')
+  const passwordError = document.querySelector('.password.error')
 
   form.addEventListener('submit', async (e) => {
-    e.preventDefault();
+    e.preventDefault()
 
     // reset errors
-    emailError.textContent = '';
-    passwordError.textContent = '';
+    emailError.textContent = ''
+    passwordError.textContent = ''
 
     // get values
-    const email = form.email.value;
-    const password = form.password.value;
+    const email = form.email.value
+    const password = form.password.value
 
     try {
       const res = await fetch('/login', { 
@@ -19,20 +19,18 @@ const form = document.querySelector('form');
         body: JSON.stringify({ email, password }),
         headers: {'Content-Type': 'application/json'}
       })
-      const data = await res.json();
-      // console.log("hello");
-      // console.log(data.user);
+      const data = await res.json()
       if (data.errors) {
-        emailError.textContent = data.errors.email;
-        passwordError.textContent = data.errors.password;
-        console.log("scriptjs"+passwordError.textContent);
+        emailError.textContent = data.errors.email
+        passwordError.textContent = data.errors.password
+        console.log("scriptjs"+passwordError.textContent)
       }
       if (data.user) {
-        location.assign('/');
+        location.assign('/')
       }
 
     }
     catch (err) {
-      console.log(err);
+      console.log(err)
     }
   });

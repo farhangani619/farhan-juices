@@ -1,9 +1,9 @@
 const express = require('express')
 const mongoose = require('mongoose')
-const authRoutes = require('./routes/authRoutes');
-const cookieParser = require('cookie-parser');
-const { requireAuth, checkUser } = require('./middleware/authMiddleware');
-const hbs = require('hbs');
+const authRoutes = require('./routes/authRoutes')
+const cookieParser = require('cookie-parser')
+const { requireAuth, checkUser } = require('./middleware/authMiddleware')
+const hbs = require('hbs')
 
 const app = express()
 
@@ -17,7 +17,6 @@ hbs.registerPartials(__dirname+'/views/partials')
 
 
 const port = process.env.PORT
-// const dbURI = process.env.MONGODB_URI
 mongoose.connect(process.env.DB_URI,{
     useCreateIndex:true,
     useUnifiedTopology:true,
@@ -27,7 +26,7 @@ mongoose.connect(process.env.DB_URI,{
         console.log("server is up and running")
     })
 }).catch((err)=>{
-    console.log(err);
+    console.log(err)
 })
 
 app.get('*', checkUser);
