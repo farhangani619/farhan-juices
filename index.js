@@ -1,9 +1,11 @@
 const express = require('express')
 const mongoose = require('mongoose')
+const cookieParser = require('cookie-parser')
 const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, './config/dev.env') })
+
 const authRoutes = require('./routes/authRoutes')
-const cookieParser = require('cookie-parser')
+
 const { requireAuth, checkUser } = require('./middleware/authMiddleware')
 const hbs = require('hbs')
 
